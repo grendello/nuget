@@ -21,6 +21,9 @@ I haven't tried compiling the package with MonoDevelop, so your mileage my vary 
 >
 > 	  xbuild /property:TreatWarnigsAsErrors=false projectfile.csproj
 
+Alternatively in the top directory of the **mono** branch there exists a build script (_build.sh_) which
+will build all the projects which are usable on Mono now.
+
 # What works?
 
 NuGet consists of a number of separate projects, not all of which can be used on Linux. The state of 
