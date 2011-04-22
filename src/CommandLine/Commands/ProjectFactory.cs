@@ -4,13 +4,69 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Versioning;
 using System.Xml.Linq;
+#if SUPPORTED_ON_MONO
 using Microsoft.Build.Evaluation;
 using Microsoft.Build.Execution;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Logging;
+#endif
 using NuGet.Common;
 
 namespace NuGet.Commands {
+#if !SUPPORTED_ON_MONO
+	class Project 
+	{
+		public Project (string path)
+		{}
+	}
+	
+	class ProjectFactory : IPropertyProvider
+	{
+		public bool IncludeSymbols {
+			get { throw GetNotSupported (); }
+			set { throw GetNotSupported (); }
+		}
+
+		public Dictionary<string, string> Properties {
+			get { throw GetNotSupported (); }
+		}
+
+		public bool IsTool {
+			get { throw GetNotSupported (); }
+			set { throw GetNotSupported (); }
+		}
+
+		public ILogger Logger {
+			get { throw GetNotSupported (); }
+			set { throw GetNotSupported (); }
+		}
+
+		public PackageBuilder CreateBuilder ()
+		{
+			throw GetNotSupported ();
+		}
+		
+		public ProjectFactory (string path)
+		{
+			throw GetNotSupported ();
+		}
+
+		public ProjectFactory (Project project)
+		{
+			throw GetNotSupported ();
+		}
+
+		dynamic IPropertyProvider.GetPropertyValue (string propertyName)
+		{
+			throw GetNotSupported ();
+		}
+
+		NotSupportedException GetNotSupported ()
+		{
+			return new NotSupportedException ("At this point Mono lacks implementation of the Microsoft.Build assembly and the ProjectFactory command is not available.");
+		}
+	}
+#else
     internal class ProjectFactory : IPropertyProvider {
         private readonly Project _project;
         private FrameworkName _frameworkName;
@@ -548,4 +604,5 @@ namespace NuGet.Commands {
             }
         }
     }
+#endif
 }
