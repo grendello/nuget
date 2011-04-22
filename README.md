@@ -47,6 +47,12 @@ Mostly seems to work fine with the following exceptions:
        It will work if you build your package from a _.nuspec_ file, fail if you attempt to build a project
        file (_.csproj_, _.vbproj_ etc)
 
+Tested commands:
+
+*      list
+*      install
+*      pack
+
 ## Bootstrapper
 
 Downloads NuGet.exe without problems.
