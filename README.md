@@ -16,7 +16,7 @@ Currently you should not try to compile the _NuGet.sln_ solution since it will f
 I haven't tried compiling the package with MonoDevelop, so your mileage my vary there. I used Mono's
 **xbuild** command with Mono from the master branch to compile the projects mentioned below.
 
-> Note that a few NuGet projects are configured to treat errors as warnings. Therefore in order to
+> Note that a few NuGet projects are configured to treat warnings as errors. Therefore in order to
 > compile them, you should use the command below:
 >
 > 	  xbuild /property:TreatWarnigsAsErrors=false projectfile.csproj
