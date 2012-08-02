@@ -19,7 +19,7 @@ I haven't tried compiling the package with MonoDevelop, so your mileage my vary 
 > Note that a few NuGet projects are configured to treat warnings as errors. Therefore in order to
 > compile them, you should use the command below:
 >
-> 	  xbuild /property:TreatWarnigsAsErrors=false projectfile.csproj
+> 	  xbuild /property:TreatWarningsAsErrors=false projectfile.csproj
 
 Alternatively in the top directory of the **mono** branch there exists a build script (_build.sh_) which
 will build all the projects which are usable on Mono now.
